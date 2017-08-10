@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">core</string>
+    <string name="sure">确定</string>
+    <string name="cancel">取消</string>
+    <string name="loading">  正在加载...</string>
+    <string name="no_data">  没有数据了 </string>
+    <string name="error">  出现了一些错误 </string>
+    <string name="net_error">  网络出现了一些问题 </string>
+    <string name="please_wait">请稍候</string>
+</resources>
