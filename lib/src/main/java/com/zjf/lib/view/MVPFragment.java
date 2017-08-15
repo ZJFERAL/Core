@@ -24,6 +24,7 @@ public abstract class MVPFragment<T extends BasePresenter> extends BaseFragment 
 
     protected T mPresenter;
     protected View mLayoutView;
+    private AlertDialog mDialog;
 
     public MVPFragment() {
 
@@ -83,10 +84,21 @@ public abstract class MVPFragment<T extends BasePresenter> extends BaseFragment 
     }
 
     @Override
-    public void showProgressDialog(String msg) {
-        new ProgressDialog.Builder(mContext)
-                .setMessage(msg)
-                .show();
+    public void showProgressDialog(String msg,boolean cancelable) {
+        if (mDialog == null) {
+            mDialog = new ProgressDialog.Builder(mContext)
+                    .create();
+        }
+        mDialog.setCancelable(cancelable);
+        mDialog.setMessage(msg);
+        mDialog.show();
+    }
+
+    @Override
+    public void dismissProgressDialog(){
+        if(mDialog!=null&&mDialog.isShowing()){
+            mDialog.dismiss();
+        }
     }
 
     @Override

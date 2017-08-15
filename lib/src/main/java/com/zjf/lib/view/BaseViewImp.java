@@ -13,7 +13,9 @@ public interface BaseViewImp{
 
     void showToast(String msg);
 
-    void showProgressDialog(String msg);
+    void showProgressDialog(String msg,boolean cancelable);
+
+    void dismissProgressDialog();
 
     void showSimpleDialog(String msg);
 

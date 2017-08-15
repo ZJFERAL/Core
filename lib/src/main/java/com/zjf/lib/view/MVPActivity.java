@@ -16,10 +16,11 @@ import com.zjf.lib.utils.LogUtils;
 import com.zjf.lib.utils.SnackBarUtils;
 
 
-public abstract class MVPActivity<T extends BasePresenter> extends BaseActivity implements BaseViewImp,PresenterFactory<T>,LoaderManager.LoaderCallbacks<T> {
+public abstract class MVPActivity<T extends BasePresenter> extends BaseActivity implements BaseViewImp, PresenterFactory<T>, LoaderManager.LoaderCallbacks<T> {
 
     protected T mPresenter;
     protected View mLayoutView;
+    private AlertDialog mDialog;
 
     @Override
     public void initVariables() {
@@ -67,10 +68,21 @@ public abstract class MVPActivity<T extends BasePresenter> extends BaseActivity 
     }
 
     @Override
-    public void showProgressDialog(String msg) {
-        new ProgressDialog.Builder(mContext)
-                .setMessage(msg)
-                .show();
+    public void showProgressDialog(String msg,boolean cancelable) {
+        if (mDialog == null) {
+            mDialog = new ProgressDialog.Builder(mContext)
+                    .create();
+        }
+        mDialog.setCancelable(cancelable);
+        mDialog.setMessage(msg);
+        mDialog.show();
+    }
+
+    @Override
+    public void dismissProgressDialog(){
+        if(mDialog!=null&&mDialog.isShowing()){
+            mDialog.dismiss();
+        }
     }
 
     @Override
@@ -83,7 +95,7 @@ public abstract class MVPActivity<T extends BasePresenter> extends BaseActivity 
 
     @Override
     public void showSnackBar(String msg, int type) {
-        SnackBarUtils.ShortSnackbar(getLayoutView(),msg,type).show();
+        SnackBarUtils.ShortSnackbar(getLayoutView(), msg, type).show();
     }
 
     protected abstract View getLayoutView();

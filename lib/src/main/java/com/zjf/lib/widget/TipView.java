@@ -65,11 +65,13 @@ public class TipView extends FrameLayout {
         } else if (mType == ShowType.NET_ERROR) {
             showNetError();
         }
+        addView(mCurrentView);
     }
 
 
-    private void setType(ShowType type) {
+    public void setType(ShowType type) {
         mType = type;
+        init();
     }
 
     public void setResId(int resId) {
@@ -81,22 +83,19 @@ public class TipView extends FrameLayout {
     }
 
     public void showCustomView(View currentView) {
-        if (mCurrentView != null) {
-            removeView(mCurrentView);
-        }
+        removeCurrentView();
         mCurrentView = currentView;
-        mType = ShowType.CUSTOM;
-        addView(mCurrentView);
     }
 
-    public void showLoading() {
+    private void showLoading() {
         removeCurrentView();
         mCurrentView = LayoutInflater.from(getContext()).inflate(R.layout.loading_view_layout, this, false);
         ((TextView) mCurrentView.findViewById(R.id.text_loading_tip)).setText(mMsg);
+
     }
 
 
-    public void showEmpty() {
+    private void showEmpty() {
         removeCurrentView();
         mCurrentView = LayoutInflater.from(getContext()).inflate(R.layout.empty_data_layout, this, false);
         ((TextView) mCurrentView.findViewById(R.id.text_empty_tip)).setText(mMsg);
@@ -104,7 +103,7 @@ public class TipView extends FrameLayout {
     }
 
 
-    public void showError() {
+    private void showError() {
         removeCurrentView();
         mCurrentView = LayoutInflater.from(getContext()).inflate(R.layout.error_view_layout, this, false);
         ((TextView) mCurrentView.findViewById(R.id.text_error_tip)).setText(mMsg);
@@ -112,7 +111,7 @@ public class TipView extends FrameLayout {
     }
 
 
-    public void showNetError() {
+    private void showNetError() {
         removeCurrentView();
         mCurrentView = LayoutInflater.from(getContext()).inflate(R.layout.net_error_view_layout, this, false);
         ((TextView) mCurrentView.findViewById(R.id.text_net_error_tip)).setText(mMsg);
