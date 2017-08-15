@@ -19,8 +19,7 @@ import com.zjf.lib.utils.SnackBarUtils;
 public abstract class MVPActivity<T extends BasePresenter> extends BaseActivity implements BaseViewImp, PresenterFactory<T>, LoaderManager.LoaderCallbacks<T> {
 
     protected T mPresenter;
-    protected View mLayoutView;
-    private AlertDialog mDialog;
+    private ProgressDialog mDialog;
 
     @Override
     public void initVariables() {
@@ -70,8 +69,7 @@ public abstract class MVPActivity<T extends BasePresenter> extends BaseActivity 
     @Override
     public void showProgressDialog(String msg,boolean cancelable) {
         if (mDialog == null) {
-            mDialog = new ProgressDialog.Builder(mContext)
-                    .create();
+            mDialog = new ProgressDialog(mContext);
         }
         mDialog.setCancelable(cancelable);
         mDialog.setMessage(msg);
