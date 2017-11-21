@@ -5,10 +5,10 @@ android {
     buildToolsVersion "25.0.2"
 
     defaultConfig {
-        minSdkVersion 15
+        minSdkVersion 14
         targetSdkVersion 25
-        versionCode 3
-        versionName "3.0"
+        versionCode 4
+        versionName "v4.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
