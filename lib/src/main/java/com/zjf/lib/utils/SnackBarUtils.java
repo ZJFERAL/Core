@@ -16,9 +16,9 @@ import android.widget.TextView;
  */
 
 public class SnackBarUtils {
-    private static final int Info = FinalParams.ERROR_INFO;
-    private static final int Warning = FinalParams.ERROR_WARNING;
-    private static final int Alert = FinalParams.ERROR_ALERT;
+    private static final int Info = 0x8001;
+    private static final int Warning = 0x8002;
+    private static final int Alert = 0x8003;
 
 
     public static int colorAccent = 0xf2dd96;
